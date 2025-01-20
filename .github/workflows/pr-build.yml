@@ -24,8 +24,10 @@ jobs:
     - name: Compile code
       run: npm run build || echo "Build script not implemented"
 
-    - name: Run secret scanning
-      uses: advanced-security/secret-scanning@v1
+    - name: Secret scanning with TruffleHog
+      uses: trufflesecurity/trufflehog-action@v1
+      with:
+        scan_depth: 50
 
     - name: Dependency scanning
       run: npm audit --production
